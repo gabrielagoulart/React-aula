@@ -7,7 +7,9 @@ import "./Task.css"
 const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
 
     const history = useHistory();
-    const handleTaskDetailsClick = () => {
+    const handleTaskDetailsClick = (e) => {
+        e.preventDefault();
+        console.log('here')
         history.push(`/${task.title}`)
     }
 
@@ -24,7 +26,7 @@ const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
                     <CgClose />
                 </button>
 
-                <button className='see-task-details-button' onClick={handleTaskDetailsClick}>
+                <button type="button" className='see-task-details-button' onClick={handleTaskDetailsClick}>
                 <CgInfo />
                 </button>
 

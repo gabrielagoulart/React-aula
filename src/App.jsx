@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {v4 as uuidv4} from 'uuid'
-import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
+import { Router, Route, Routes, Switch } from 'react-router-dom'
 
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
@@ -35,6 +36,8 @@ const App = () => {
     fetchTasks();
   }, [])
 
+  const history = createBrowserHistory();
+
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
       if (task.id === taskId) return {...task, completed: !task.completed}
@@ -63,7 +66,7 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Router history={history}>
 
       <div className='container'>
         <Header />
